@@ -626,10 +626,65 @@
         /* ============================================
            PLAN DE ESTUDIOS
            ============================================ */
+        .modulos-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--blanco);
+            color: var(--azul-camacol);
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transicion);
+            border: 2px solid var(--azul-claro);
+            margin: 0 auto 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .modulos-toggle-btn:hover {
+            background: var(--azul-light);
+            border-color: var(--azul-camacol);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(27,58,107,0.15);
+        }
+
+        .modulos-toggle-btn.active {
+            background: var(--azul-camacol);
+            color: var(--blanco);
+            border-color: var(--azul-camacol);
+        }
+
+        .modulos-toggle-btn .arrow {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+            font-weight: 900;
+        }
+
+        .modulos-toggle-btn.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .modulos-wrapper {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
         .modulos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 20px;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.8s ease, opacity 0.5s ease;
+        }
+
+        .modulos-grid.show {
+            max-height: 5000px;
+            opacity: 1;
         }
 
         .modulo-card {
@@ -1354,66 +1409,615 @@
             .diferencial-content {
                 grid-template-columns: 1fr;
             }
+
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
+            /* Navbar mobile */
             .nav-links { display: none; }
             .nav-hamburger { display: flex; }
+
+            .navbar .container {
+                height: 65px;
+            }
+
+            .nav-logos img {
+                height: 35px;
+            }
 
             .nav-links.open {
                 display: flex;
                 flex-direction: column;
                 position: absolute;
-                top: 75px;
+                top: 65px;
                 left: 0;
                 right: 0;
                 background: rgba(13, 31, 60, 0.98);
                 padding: 24px;
                 gap: 16px;
                 border-bottom: 1px solid rgba(255,255,255,0.1);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+                padding: 8px 0;
+            }
+
+            /* Hero mobile */
+            .hero {
+                min-height: auto;
+                padding: 100px 0 60px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 8vw, 2.5rem);
+                margin-bottom: 16px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.05rem;
+                margin-bottom: 16px;
+            }
+
+            .hero-tagline {
+                font-size: 0.95rem;
+            }
+
+            /* Trust bar */
+            .trust-bar {
+                padding: 14px 0;
             }
 
             .trust-bar .container {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
             }
 
-            .countdown {
+            .trust-item {
+                padding: 10px 12px;
                 gap: 10px;
             }
 
-            .countdown-item {
-                padding: 12px 14px;
-                min-width: 70px;
+            .trust-icon {
+                font-size: 1.3rem;
+                width: 36px;
+                height: 36px;
             }
 
-            .countdown-number { font-size: 1.6rem; }
+            .trust-text {
+                font-size: 0.8rem;
+            }
 
-            .hero-cta-group { flex-direction: column; align-items: center; }
+            .trust-text small {
+                font-size: 0.7rem;
+            }
 
-            .modulos-grid { grid-template-columns: 1fr; }
+            /* Countdown */
+            .countdown {
+                gap: 8px;
+            }
 
-            .form-grid { grid-template-columns: 1fr; }
-            .form-group.full { grid-column: 1; }
+            .countdown-item {
+                padding: 10px 12px;
+                min-width: 65px;
+            }
 
-            .precios-grid { grid-template-columns: 1fr; }
+            .countdown-number { 
+                font-size: 1.5rem;
+            }
 
-            .precio-card.destacado { transform: none; }
-            .precio-card.destacado:hover { transform: translateY(-8px); }
+            .countdown-unit {
+                font-size: 0.7rem;
+            }
 
-            .section { padding: 60px 0; }
+            /* Hero badges */
+            .hero-badges {
+                display: none;
+            }
+
+            /* Buttons */
+            .hero-cta-group { 
+                flex-direction: column; 
+                align-items: stretch;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .btn {
+                padding: 14px 28px;
+                font-size: 1rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .modulos-toggle-btn {
+                padding: 14px 32px;
+                font-size: 0.95rem;
+            }
+
+            /* Sections */
+            .section { 
+                padding: 50px 0; 
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .section-label {
+                font-size: 0.8rem;
+                padding: 5px 16px;
+            }
+
+            .section-title {
+                font-size: clamp(1.6rem, 6vw, 2.2rem);
+                margin-bottom: 12px;
+            }
+
+            .section-desc {
+                font-size: 1rem;
+            }
+
+            /* Grids */
+            .modulos-grid { 
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .beneficios-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .perfiles-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            /* Form */
+            .form-grid { 
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .form-group.full { 
+                grid-column: 1; 
+            }
+
+            /* Precios */
+            .precios-grid { 
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .precio-card.destacado { 
+                transform: none; 
+            }
+
+            .precio-card.destacado:hover { 
+                transform: translateY(-8px); 
+            }
+
+            .precio-valor {
+                font-size: 2.2rem;
+            }
+
+            /* Diferencial */
+            .diferencial-item {
+                padding: 16px;
+            }
+
+            .diferencial-item .icon {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+                font-size: 1.2rem;
+            }
+
+            /* Footer */
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 24px;
+            }
+
+            .cta-final h2 {
+                font-size: clamp(1.6rem, 6vw, 2.2rem);
+            }
+
+            .cta-final p {
+                font-size: 1rem;
+            }
+
+            .cta-final-buttons {
+                flex-direction: column;
+                align-items: stretch;
+                max-width: 400px;
+                margin: 0 auto 32px;
+            }
+
+            .cta-contacto {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            /* WhatsApp float */
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-float svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .whatsapp-tooltip {
+                display: none;
+            }
+
+            /* Urgency banner */
+            .urgency-banner {
+                top: 65px;
+            }
+
+            .urgency-banner p {
+                font-size: 0.85rem;
+                flex-direction: column;
+                gap: 4px;
+            }
         }
 
         @media (max-width: 480px) {
+            /* Container más ajustado */
+            .container { 
+                padding: 0 16px; 
+            }
+
+            /* Navbar más compacto */
+            .navbar .container {
+                height: 60px;
+            }
+
+            .nav-logos {
+                gap: 10px;
+            }
+
+            .nav-logos img {
+                height: 30px;
+            }
+
+            .nav-divider {
+                height: 25px;
+            }
+
+            /* Hero extra small */
+            .hero {
+                padding: 80px 0 40px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+                line-height: 1.15;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .hero-tagline {
+                font-size: 0.85rem;
+                margin-bottom: 24px;
+            }
+
+            /* Trust bar stack */
+            .trust-bar {
+                padding: 12px 0;
+            }
+
             .trust-bar .container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .trust-item {
+                padding: 8px 10px;
+                flex-direction: column;
+                text-align: center;
+                gap: 6px;
+            }
+
+            .trust-icon {
+                font-size: 1.1rem;
+                width: 32px;
+                height: 32px;
+            }
+
+            .trust-text {
+                font-size: 0.75rem;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+
+            .trust-text small {
+                display: none;
+            }
+
+            /* Countdown más compacto */
+            .countdown-wrapper {
+                margin-bottom: 24px;
+            }
+
+            .countdown-label {
+                font-size: 0.85rem;
+                margin-bottom: 12px;
+            }
+
+            .countdown {
+                gap: 6px;
+            }
+
+            .countdown-item {
+                padding: 8px 10px;
+                min-width: 60px;
+            }
+
+            .countdown-number { 
+                font-size: 1.3rem;
+            }
+
+            .countdown-unit {
+                font-size: 0.65rem;
+            }
+
+            /* Badges stack */
+            .hero-badges { 
+                display: none;
+            }
+
+            /* Buttons más grandes para touch */
+            .btn {
+                padding: 16px 24px;
+                font-size: 0.95rem;
+            }
+
+            .modulos-toggle-btn {
+                padding: 14px 28px;
+                font-size: 0.9rem;
+                width: 100%;
+                max-width: 340px;
+            }
+
+            /* Sections más apretadas */
+            .section { 
+                padding: 40px 0; 
+            }
+
+            .section-header {
+                margin-bottom: 32px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .section-desc {
+                font-size: 0.95rem;
+            }
+
+            /* Cards más compactas */
+            .beneficio-card,
+            .perfil-card {
+                padding: 24px 20px;
+            }
+
+            .beneficio-icon,
+            .perfil-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                margin-bottom: 16px;
+            }
+
+            .beneficio-card h3,
+            .perfil-card h3 {
+                font-size: 1rem;
+            }
+
+            .beneficio-card p,
+            .perfil-card p {
+                font-size: 0.9rem;
+            }
+
+            /* Perfiles grid única columna */
+            .perfiles-grid {
                 grid-template-columns: 1fr;
             }
 
-            .hero-badges { flex-direction: column; align-items: center; }
+            /* Módulos más compactos */
+            .modulo-card {
+                padding: 16px;
+                gap: 14px;
+            }
 
-            .container { padding: 0 16px; }
+            .modulo-number {
+                width: 42px;
+                height: 42px;
+                min-width: 42px;
+                font-size: 1.1rem;
+            }
 
-            .beneficios-grid { grid-template-columns: 1fr; }
-            .perfiles-grid { grid-template-columns: 1fr; }
+            .modulo-content h3 {
+                font-size: 0.95rem;
+            }
+
+            .modulo-content p {
+                font-size: 0.85rem;
+            }
+
+            /* Form más ajustado */
+            .form-group label {
+                font-size: 0.85rem;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 12px 14px;
+                font-size: 0.9rem;
+            }
+
+            .form-submit .btn-primary {
+                padding: 16px 32px;
+                font-size: 1rem;
+            }
+
+            /* Precios más compactos */
+            .precio-card {
+                padding: 28px 20px;
+            }
+
+            .precio-tipo {
+                font-size: 0.8rem;
+            }
+
+            .precio-nombre {
+                font-size: 1.1rem;
+            }
+
+            .precio-valor {
+                font-size: 2rem;
+            }
+
+            .precio-iva {
+                font-size: 0.8rem;
+            }
+
+            .precio-features {
+                gap: 10px;
+            }
+
+            .precio-features li {
+                font-size: 0.85rem;
+            }
+
+            /* Info cards */
+            .info-card {
+                padding: 20px 16px;
+            }
+
+            .info-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+
+            .info-card h3 {
+                font-size: 1rem;
+            }
+
+            .info-card p {
+                font-size: 0.85rem;
+            }
+
+            /* CTA final */
+            .cta-final {
+                padding: 50px 0;
+            }
+
+            .cta-final h2 {
+                font-size: 1.6rem;
+                margin-bottom: 12px;
+            }
+
+            .cta-final p {
+                font-size: 0.9rem;
+                margin-bottom: 28px;
+            }
+
+            /* Diferencial */
+            .diferencial-item {
+                padding: 14px;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .diferencial-item .icon {
+                width: 48px;
+                height: 48px;
+                min-width: 48px;
+                margin-bottom: 12px;
+            }
+
+            .diferencial-item h4 {
+                font-size: 1rem;
+            }
+
+            .diferencial-item p {
+                font-size: 0.85rem;
+            }
+
+            .diferencial-cta h3 {
+                font-size: 1.3rem;
+            }
+
+            .diferencial-cta p {
+                font-size: 0.9rem;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 32px 0 20px;
+            }
+
+            .footer-logos {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .footer-logos img {
+                height: 30px;
+            }
+
+            .footer-bottom {
+                font-size: 0.8rem;
+            }
+
+            /* WhatsApp float más pequeño */
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 16px;
+                right: 16px;
+            }
+
+            .whatsapp-float svg {
+                width: 26px;
+                height: 26px;
+            }
+
+            /* Urgency banner */
+            .urgency-banner {
+                top: 60px;
+                padding: 8px 0;
+            }
+
+            .urgency-banner p {
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -1438,7 +2042,7 @@
                 <a href="#modulos">Contenido</a>
                 <a href="#precios">Precios</a>
                 <a href="#info">Horarios</a>
-                <a href="#formulario" class="nav-cta">Inscribirme Ahora</a>
+                <a href="https://checkout.wompi.co/l/VPOS_MtSHaf" target="_blank" rel="noopener noreferrer" class="nav-cta">Inscribirme Ahora</a>
             </div>
             <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
                 <span></span>
@@ -1452,7 +2056,7 @@
          URGENCY BANNER (aparece al hacer scroll)
          ========================================== -->
     <div class="urgency-banner" id="urgencyBanner">
-        <p>&#9670; Cupos limitados &mdash; El diplomado inicia el <strong>3 de Marzo</strong> &mdash; <a href="#formulario" style="color:#fff;text-decoration:underline;">Asegura tu lugar &rarr;</a></p>
+        <p>&#9670; Cupos limitados &mdash; El diplomado inicia el <strong>3 de Marzo</strong> &mdash; <a href="https://checkout.wompi.co/l/VPOS_MtSHaf" target="_blank" rel="noopener noreferrer" style="color:#fff;text-decoration:underline;">Asegura tu lugar &rarr;</a></p>
     </div>
 
     <!-- ==========================================
@@ -1513,7 +2117,7 @@
 
                 <!-- CTA buttons -->
                 <div class="hero-cta-group">
-                    <a href="#formulario" class="btn btn-primary">Inscribirme Ahora &#8594;</a>
+                    <a href="https://checkout.wompi.co/l/VPOS_MtSHaf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Inscribirme Ahora &#8594;</a>
                     <a href="#modulos" class="btn btn-secondary">Ver Plan de Estudios</a>
                 </div>
             </div>
@@ -1591,7 +2195,13 @@
                 <p class="section-desc">Un recorrido completo desde el liderazgo hasta la digitalizaci&oacute;n de la construcci&oacute;n.</p>
             </div>
 
-            <div class="modulos-grid">
+            <div class="modulos-wrapper">
+                <button class="modulos-toggle-btn" id="modulosToggle" onclick="toggleModulos()">
+                    <span>Ver todos los m&oacute;dulos</span>
+                    <span class="arrow">&#9660;</span>
+                </button>
+
+                <div class="modulos-grid" id="modulosGrid">
                 <div class="modulo-card animate-on-scroll delay-1">
                     <div class="modulo-number">01</div>
                     <div class="modulo-content">
@@ -1662,6 +2272,7 @@
                         <p>Introducci&oacute;n a BIM/Navisworks, metodolog&iacute;as &aacute;giles e Inteligencia Artificial aplicada.</p>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </section>
@@ -1753,7 +2364,7 @@
                 <div class="diferencial-cta animate-on-scroll delay-2">
                     <h3>No dejes que tu competencia te pase por delante</h3>
                     <p>Los profesionales que se actualizan hoy lideran los proyectos de ma&ntilde;ana. Este diplomado es tu ventaja competitiva.</p>
-                    <a href="#formulario" class="btn btn-primary">Asegurar mi cupo &#8594;</a>
+                    <a href="https://checkout.wompi.co/l/VPOS_MtSHaf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Asegurar mi cupo &#8594;</a>
                 </div>
             </div>
         </div>
@@ -1783,7 +2394,7 @@
                         <li><span class="check">&#10003;</span> Certificado de participaci&oacute;n</li>
                         <li><span class="check">&#10003;</span> Acceso 100% online</li>
                     </ul>
-                    <a href="#formulario" class="btn btn-secondary" style="color:var(--azul-camacol);border-color:var(--azul-camacol);">Inscribirme &#8594;</a>
+                    <a href="https://checkout.wompi.co/l/VPOS_MtSHaf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="color:var(--azul-camacol);border-color:var(--azul-camacol);">Inscribirme &#8594;</a>
                 </div>
 
                 <div class="precio-card destacado animate-on-scroll delay-2">
@@ -1800,7 +2411,7 @@
                         <li><span class="check">&#10003;</span> Acceso 100% online</li>
                         <li><span class="check">&#10003;</span> Precio preferencial de afiliado</li>
                     </ul>
-                    <a href="#formulario" class="btn btn-primary">Inscribirme Ahora &#8594;</a>
+                    <a href="https://checkout.wompi.co/l/VPOS_MtSHaf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Inscribirme Ahora &#8594;</a>
                 </div>
             </div>
 
@@ -2048,6 +2659,22 @@
                 document.getElementById('navLinks').classList.remove('open');
             });
         });
+
+        // ---- MODULOS TOGGLE ----
+        function toggleModulos() {
+            const grid = document.getElementById('modulosGrid');
+            const button = document.getElementById('modulosToggle');
+            const buttonText = button.querySelector('span:first-child');
+            
+            grid.classList.toggle('show');
+            button.classList.toggle('active');
+            
+            if (grid.classList.contains('show')) {
+                buttonText.textContent = 'Ocultar m\u00f3dulos';
+            } else {
+                buttonText.textContent = 'Ver todos los m\u00f3dulos';
+            }
+        }
 
         // ---- FORM SUBMISSION ----
         function enviarFormulario(e) {
