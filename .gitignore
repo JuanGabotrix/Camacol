@@ -1,0 +1,14 @@
+# Archivos temporales
+tmpclaude-*
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Archivos innecesarios
+*.pdf
+!dist/*.pdf
