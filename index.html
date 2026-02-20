@@ -461,6 +461,187 @@
         }
 
         /* ============================================
+           SECCI&Oacute;N VIDEO TUTORIAL
+           ============================================ */
+        .video-tutorial-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #f0f4f8 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-tutorial-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--azul-camacol), var(--dorado), var(--azul-medio));
+        }
+
+        .video-tutorial-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .video-tutorial-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--azul-light);
+            color: var(--azul-camacol);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .video-tutorial-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--azul-oscuro);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .video-tutorial-title .highlight {
+            background: linear-gradient(135deg, var(--azul-camacol), var(--azul-medio));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .video-tutorial-subtitle {
+            font-size: 1.1rem;
+            color: var(--texto-light);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .video-wrapper {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,32,96,0.15);
+            margin-bottom: 32px;
+            background: #000;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            display: block;
+            border-radius: 16px;
+        }
+
+        .video-cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+
+        .video-cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--dorado), var(--naranja));
+            color: var(--blanco);
+            box-shadow: 0 4px 20px rgba(245,158,11,0.4);
+            transition: var(--transicion);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .video-cta-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(245,158,11,0.5);
+        }
+
+        .video-cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            background: transparent;
+            color: var(--azul-camacol);
+            border: 2px solid var(--azul-camacol);
+            transition: var(--transicion);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .video-cta-secondary:hover {
+            background: var(--azul-camacol);
+            color: var(--blanco);
+            transform: translateY(-3px);
+        }
+
+        /* WhatsApp hint indicator */
+        .whatsapp-hint {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 998;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: hintBounce 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .whatsapp-hint-text {
+            background: var(--azul-oscuro);
+            color: var(--blanco);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 8px;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .whatsapp-hint-text::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--azul-oscuro);
+        }
+
+        .whatsapp-hint-arrow {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        @keyframes hintBounce {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(8px); opacity: 0.7; }
+        }
+
+        /* ============================================
            BARRA DE CONFIANZA
            ============================================ */
         .trust-bar {
@@ -1668,6 +1849,33 @@
                 display: none;
             }
 
+            /* Video tutorial section */
+            .video-tutorial-section {
+                padding: 50px 0;
+            }
+
+            .video-tutorial-title {
+                font-size: 1.6rem;
+            }
+
+            .video-tutorial-subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 28px;
+            }
+
+            .video-cta-group {
+                flex-direction: column;
+                align-items: stretch;
+                max-width: 380px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .whatsapp-hint {
+                bottom: 85px;
+                right: 22px;
+            }
+
             /* Urgency banner */
             .urgency-banner {
                 top: 65px;
@@ -2009,6 +2217,50 @@
                 height: 26px;
             }
 
+            /* Video tutorial section 480 */
+            .video-tutorial-section {
+                padding: 36px 0;
+            }
+
+            .video-tutorial-label {
+                font-size: 0.78rem;
+                padding: 6px 14px;
+            }
+
+            .video-tutorial-title {
+                font-size: 1.3rem;
+            }
+
+            .video-tutorial-subtitle {
+                font-size: 0.88rem;
+                margin-bottom: 20px;
+            }
+
+            .video-wrapper {
+                border-radius: 10px;
+                margin-bottom: 20px;
+            }
+
+            .video-wrapper video {
+                border-radius: 10px;
+            }
+
+            .video-cta-primary,
+            .video-cta-secondary {
+                padding: 14px 28px;
+                font-size: 0.95rem;
+            }
+
+            .whatsapp-hint {
+                bottom: 76px;
+                right: 18px;
+            }
+
+            .whatsapp-hint-text {
+                font-size: 0.7rem;
+                padding: 5px 10px;
+            }
+
             /* Urgency banner */
             .urgency-banner {
                 top: 60px;
@@ -2119,6 +2371,36 @@
                 <div class="hero-cta-group">
                     <a href="https://checkout.wompi.co/l/VPOS_MtSHaf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Inscribirme Ahora &#8594;</a>
                     <a href="#modulos" class="btn btn-secondary">Ver Plan de Estudios</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECCI&Oacute;N VIDEO TUTORIAL
+         ========================================== -->
+    <section class="video-tutorial-section" id="video-tutorial">
+        <div class="container">
+            <div class="video-tutorial-inner">
+                <div class="video-tutorial-label">&#9654; Video Tutorial</div>
+                <h2 class="video-tutorial-title">Mira c&oacute;mo <span class="highlight">inscribirte paso a paso</span></h2>
+                <p class="video-tutorial-subtitle">
+                    En este breve video te mostramos el proceso completo para asegurar tu cupo en el Diplomado. 
+                    &iexcl;Es r&aacute;pido y sencillo!
+                </p>
+                <div class="video-wrapper">
+                    <video controls preload="none" poster="" playsinline>
+                        <source src="DJI_20260219_160958_609_video.MP4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                </div>
+                <div class="video-cta-group">
+                    <a href="https://checkout.wompi.co/l/VPOS_MtSHaf" target="_blank" rel="noopener noreferrer" class="video-cta-primary">
+                        Inscribirme Ahora &#8594;
+                    </a>
+                    <a href="https://wa.me/573012588523?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20Diplomado%20en%20Gesti%C3%B3n%20de%20Proyectos" target="_blank" class="video-cta-secondary">
+                        &#9671; Tengo preguntas
+                    </a>
                 </div>
             </div>
         </div>
@@ -2577,6 +2859,12 @@
         <span class="whatsapp-tooltip">Escr&iacute;benos por WhatsApp</span>
     </a>
 
+    <!-- Indicador visual hacia WhatsApp -->
+    <div class="whatsapp-hint" id="whatsappHint">
+        <span class="whatsapp-hint-text">&iquest;Dudas? Escr&iacute;benos</span>
+        <span class="whatsapp-hint-arrow">&#9660;</span>
+    </div>
+
     <!-- ==========================================
          JAVASCRIPT
          ========================================== -->
@@ -2718,6 +3006,40 @@
                 btn.style.animation = '';
             }, 3000);
         }
+
+        // ---- WHATSAPP HINT AUTO-HIDE ----
+        (function() {
+            const hint = document.getElementById('whatsappHint');
+            if (hint) {
+                // Show hint after 3 seconds
+                hint.style.opacity = '0';
+                hint.style.transition = 'opacity 0.5s ease';
+                setTimeout(function() {
+                    hint.style.opacity = '1';
+                }, 3000);
+                // Auto-hide after 12 seconds
+                setTimeout(function() {
+                    hint.style.opacity = '0';
+                    setTimeout(function() { hint.style.display = 'none'; }, 500);
+                }, 12000);
+            }
+        })();
+
+        // ---- LAZY LOAD VIDEO ----
+        (function() {
+            const video = document.querySelector('.video-wrapper video');
+            if (video) {
+                const videoObserver = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            video.preload = 'metadata';
+                            videoObserver.unobserve(video);
+                        }
+                    });
+                }, { rootMargin: '200px' });
+                videoObserver.observe(video);
+            }
+        })();
     </script>
 </body>
 </html>
